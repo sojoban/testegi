@@ -1,41 +1,43 @@
-# Vökuró
+Test EGI
+=========
 
-This is a sample application for the [Phalcon Framework](https://github.com/phalcon/cphalcon).
-We expect to implement as many features as possible to showcase the framework and its potential.
-
-Please write us if you have any feedback.
-
-Thanks.
-
-## NOTE
-
-The master branch will always contain the latest stable version.
-If you wish to check older versions or newer ones currently under development, please switch to the relevant branch.
-
-## Get Started
+Get Started
+-----------
 
 ### Requirements
 
 To run this application on your machine, you need at least:
 
-* >= PHP 5.5
-* >= Phalcon 3.0
 * Apache Web Server with `mod_rewrite enabled`, and `AllowOverride Options` (or `All`) in your `httpd.conf` or Nginx Web Server
-* Latest [Phalcon Framework](https://github.com/phalcon/cphalcon) extension installed/enabled
-* MySQL >= 5.1.5
-
-Then you'll need to create the database and initialize schema:
+* MySQL >= 5.7
+* PHP 5.6
+* PHP mcrypt
+* PHP mbstring
+* PHP intl
+* PHP curl -- otherwise crawling goes **very slow**
+* Phalcon 3.0. Phalcon is a web framework delivered as a C extension providing high performance and lower resource consumption.
 
 ```bash
-echo 'CREATE DATABASE vokuro' | mysql -u root
-cat schemas/vokuro.sql | mysql -u root vokuro
+brew tap homebrew/homebrew-php
+brew install php56-mcrypt
+brew install php56-mbstring
+brew install php56-intl
+brew install php56-phalcon
+brew install php56-curl
 ```
 
-Also you can override application config by creating `app/config/config.dev.php` (already gitignored).
+### Database Setup
 
-### Installing Dependencies via Composer
+```bash
+./install_database.sh <mysql-host> <mysql-root-password>
+```
 
-Vökuró's dependencies must be installed using Composer. Install composer in a common location or in your project:
+## Installing Dependencies via Composer
+
+*NOTE*: Dependencies are currently pushed into the git repository, then you should not really
+need to use Composer unless you need to include a new dependency or update current versions.
+
+Test EGI's dependencies must be installed using Composer. Install composer in a common location or in your project:
 
 ```bash
 curl -s http://getcomposer.org/installer | php
@@ -44,16 +46,12 @@ curl -s http://getcomposer.org/installer | php
 Run the composer installer:
 
 ```bash
-cd vokuro
+cd lab
 php composer.phar install
 ```
 
-## Improving this Sample
+## Preparing the Dev environment
 
-Phalcon is an open source project and a volunteer effort.
-Vökuró does not have human resources fully dedicated to the maintenance of this software.
-If you want something to be improved or you want a new feature please submit a Pull Request.
+Rename the files on `app/config/*.renameme` to `.php` to have
+those values override the standard configuration.
 
-## License
-
-Vökuró is open-sourced software licensed under the New BSD License.
